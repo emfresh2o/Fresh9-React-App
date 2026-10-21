@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import CardScanner from './CardScanner';
 import baseballLogo from './assets/Fresh9Logo.png';
 
 export default function App() {
@@ -172,6 +173,21 @@ export default function App() {
                 ✕
               </button>
             </div>
+
+            {/* Card Scanner */}
+            <CardScanner
+              onScanSuccess={(scannedDetails) => {
+                setFormData({
+                  player: scannedDetails.playerName,
+                  year: scannedDetails.year,
+                  manufacturer: `${scannedDetails.manufacturer} ${scannedDetails.setName}`,
+                  cardNumber: scannedDetails.cardNumber,
+                  team: 'Mariners',
+                  condition: 'Near Mint',
+                  value: '',
+                });
+              }}
+            />
 
             <form onSubmit={handleSubmit} className='space-y-3'>
               <div>
